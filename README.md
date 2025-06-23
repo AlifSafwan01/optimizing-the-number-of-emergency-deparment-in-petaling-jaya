@@ -42,9 +42,108 @@ As for hospitals that provide emergency departments, there is 14 potential hospi
 | Sunway Medical Centre | Subang Jaya |
 | Sungai Buloh Hospital | Sungai Buloh |
 
-### Maximal Covering Location Problem Formulation
+### Maximal Covering Location Problem Model Formulation
+Sets,
+| Set | Description |
+| --- | --- |
+| $H$ | Set of emergency department within and around Petaling Jaya |
+| $i$ | Index of set $H$, $i = 1,...,14$ |
+| $H_i$ | The $i$-th element of $H$ |
+| $D$ | Set of potential demand in Petaling Jaya |
+| $j$ | Index of set $D$, $j = 1,...,470$ |
+| $D_j$| The $j$-th element of D |
 
-### Maximum Expected Covering Location Problem Formulation
+Parameters,
+| Parameter | Description |
+| --- | --- |
+| $d_j$| The associated population demand value at $D_j$ |
+| $m$ | The number of emergency department to be located |
+| $l$ | The associated travel duration |
+| $T_{j,i}$ | Duration taken from $H_i$ node to $D_j$ node |
+
+Decision Variables,
+
+$$
+\begin{equation}
+t_{j,i} = \begin{cases}
+1 & \text{, }T_{j,i} \leq l \\
+0 & \text{, otherwise}
+\end{cases}
+\end{equation}
+$$
+
+$$
+\begin{equation}
+D_j = \begin{cases}
+1 & \text{, if at least one emergency can cover demand } j \\
+0 & \text{, otherwise}
+\end{cases}
+\end{equation}
+$$
+
+$$
+\begin{equation}
+H_i = \begin{cases}
+1 & \text{, if the emergency department } i \text{ is chose as demand coverage} \\
+0 & \text{, otherwise}
+\end{cases}
+\end{equation}
+$$
+
+Objective Function,
+
+$$
+Max\text{ }F = \sum_{j=1}^{470} d_jD_j
+$$
+
+Constraint,
+
+$$
+\sum_{i=1}^{14} t_{j,i} H_i \geq D_j,\ \forall j = 1,\dots,470
+$$
+
+$$
+\sum_{i=1}^{14} H_i = m
+$$
+
+### Maximum Expected Covering Location Problem Model Formulation
+In this model incorporates an additional parameter denoted as the probability of the emergency departments not working, $p$. In this model also aasumed that all emergency departments share the same probability of not functioning simultaneously.
+
+Decision Variables,
+
+$$
+\begin{equation}
+D_{ij} = \begin{cases}
+1 & \text{ , if at least } i \text{ emergency department cover demand at node }j \\
+0 & \text{ , if less} i \text{emergency department cover demand at node }j
+\end{cases}
+\end{equation}
+$$
+
+$$
+\begin{equation}
+H_i = \begin{cases}
+1 & \text{, if the emergency department } i \text{ is chose as demand coverage} \\
+0 & \text{, otherwise}
+\end{cases}
+\end{equation}
+$$
+
+Objective Function,
+
+$$
+Max G = \sum_{j=1}^{470} \sum_{i=1}^{14} \left(1-p\right)p^{i-1}d_jD_{ij}
+$$
+
+Constraint,
+
+$$
+\sum_{i=1}^{14} t_{j,i}H_i \geq \sum_{i=1}^{14} D_{ij} \text{ , } \forall j = 1, \dots, 470
+$$
+
+$$
+\sum_{i=1}^{14} H_i = m
+$$
 
 ## The Summary
 ![Alt Image](Optimizing-The-Number-of-Hospitals-Emergency-Department-in-Petaling-Jaya-Using-Set-Covering-Problem-Analysis.jpg)
