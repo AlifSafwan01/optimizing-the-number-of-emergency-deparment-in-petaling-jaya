@@ -46,4 +46,5 @@ As for hospitals that provide emergency departments, there is 14 potential hospi
 
 ### Maximum Expected Covering Location Problem Formulation
 
-### The Summary
+## The Summary
+![Alt Image](Optimizing-The-Number-of-Hospitals-Emergency-Department-in-Petaling-Jaya-Using-Set-Covering-Problem-Analysis.jpg)
